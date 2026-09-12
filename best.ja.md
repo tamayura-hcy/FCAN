@@ -1,4 +1,4 @@
-# FEA-Net 最良結果記録（best）
+# FCAN 最良結果記録（best）
 
 - 記録日時：2026-08-08（★ 2026-08-10 に `best/SUMMARY.txt` のバッチ実行で更新：全10指標＋新しいB-C設定）
 - データソース：`results_es_sweep.txt`（ES スイープ、A-C/B-C で再利用）＋ `results_ab_llprob_sweep.txt`（A-B 低周波増強スイープ、P070A20 に更新）＋ `best/SUMMARY.txt`（2026-08-10 の最良設定×5シードのバッチ、全指標）
