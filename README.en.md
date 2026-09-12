@@ -1,4 +1,4 @@
-# FCCAN
+# FCAN
 
 **Frequency-aware Contrastive Cross-domain Adaptation Network for Unsupervised Domain Adaptation of OCT Images**
 
