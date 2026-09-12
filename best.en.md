@@ -1,4 +1,4 @@
-# FEA-Net Best Results Record
+# FCAN Best Results Record
 
 - Recorded: 2026-08-08 (★ updated 2026-08-10 from the `best/SUMMARY.txt` batch: full 10 metrics + new B-C config)
 - Data sources: `results_es_sweep.txt` (ES sweep; A-C/B-C reuse it) + `results_ab_llprob_sweep.txt` (A-B low-frequency augmentation sweep, updated to P070A20) + `best/SUMMARY.txt` (2026-08-10 batch of best configs x 5 seeds with full metrics)
