@@ -1,4 +1,4 @@
-# FEA-Net 最优结果记录（best）
+# FCAN 最优结果记录（best）
 
 - 记录时间：2026-08-08（★ 2026-08-10 由 `best/SUMMARY.txt` 跑批更新：完整 10 指标 + B-C 新配置）
 - 数据来源：`results_es_sweep.txt`（ES 扫描，A-C/B-C 沿用）+ `results_ab_llprob_sweep.txt`（A-B 低频增广扫描，更新为 P070A20）+ `best/SUMMARY.txt`（2026-08-10 三任务最优方案 × 5 种子跑批，含完整指标）
