@@ -1,4 +1,4 @@
-# FCCAN
+# FCAN
 
 **OCT 画像の教師なしドメイン適応のためのウェーブレット周波数帯認識・クラス対比型クロスドメイン適応ネットワーク**
 **Frequency-aware Contrastive Cross-domain Adaptation Network for Unsupervised Domain Adaptation of OCT Images**
