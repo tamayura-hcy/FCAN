@@ -1,4 +1,4 @@
-# FCCAN
+# FCAN
 
 **基于小波频带感知与类别对比的跨设备 OCT 无监督域适应网络**
 **Frequency-aware Contrastive Cross-domain Adaptation Network for Unsupervised Domain Adaptation of OCT Images**
