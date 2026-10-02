@@ -16,7 +16,7 @@
 
 三个跨设备场景、5 个种子平均（EMA 教师固定轮）准确率：**BOE→TMI 95.6% · BOE→CELL 87.7% · TMI→CELL 92.1%**。
 
-> 命名说明：**FCCAN** 是完整方法（总框架），**FEA-Net**（Frequency-Enhanced Attention Network）是其内部的频带增强主干。
+> 命名说明：**FCAN** 是完整方法（总框架），**FEA-Net**（Frequency-Enhanced Attention Network）是其内部的频带增强主干。
 
 ---
 
@@ -32,7 +32,7 @@
 8. [运行自检](#8-运行自检)
 9. [论文复现配置](#9-论文复现配置)
 10. [实验脚本详解](#10-实验脚本详解)
-11. [常见问题-FAQ](#11-常见问题-faq)
+11. [常见问题 FAQ](#11-常见问题-faq)
 12. [许可与引用](#12-许可与引用)
 
 ---
@@ -49,12 +49,12 @@
 | `run_comparison.py` | 对比方法批量跑批：对 `comparison_experiments/` 下每个方法 × 任务 × 种子批量运行，结果写入 `comparison_experiments/results/`。用法：`python run_comparison.py`。 |
 | `run_ablation.py` | 统一消融入口。`--phase main` 跑 8 个 w/o 模块删除式消融（论文消融表）；`--phase extra` 跑 no_ema、no_fea_ll、oracle、src_only_fea 四组补充消融。用法：`python run_ablation.py --phase main`。 |
 | `run_sensitivity.py` | 敏感性分析：一次只动一个超参数（7 参数 × 5 取值 × 5 种子 × 三任务），报告末轮 EMA 教师 acc。用法：`python run_sensitivity.py --tasks AB,AC,BC`。 |
-| `run_significance_test.py` | 显著性检验：FCCAN 对每个对比方法做 3 任务 × 5 种子逐种子配对检验，输出 p 值和显著性标记（审稿 M4）。 |
+| `run_significance_test.py` | 显著性检验：FCAN 对每个对比方法做 3 任务 × 5 种子逐种子配对检验，输出 p 值和显著性标记（审稿 M4）。 |
 | `run_physics_15.py` | 频带模块物理证明：15 个模型（3 任务 × 5 种子），Phase 1 训练 + Phase 2 频带扰动/能量分析，输出到 `physics15/`。用法：`python run_physics_15.py --phase both`。 |
 | `run_batch_template.py` | 批量实验模板。复制后改 `BASE` / `CONFIGS`，就能整批跑多个配置 × 种子（记录 student/EMA acc）。 |
 | `experiment_ll_shortcut.py` | 低频捷径假说验证：源域分别训练基线和增广两个模型，对目标测试集做低频/高频扰动，验证"模型靠低频分类、增广破坏该捷径"。输出 `results_ll_shortcut.txt`。 |
-| `measure_latency.py` | 推理时间测量（论文 4.10 效率分析）：所有对比方法 + FCCAN 对目标测试集的推理时间、参数量、FLOPs。输出 `measure_latency_results.csv`。 |
-| `measure_latency_trained.py` | 用真实训练权重测量 FCCAN 推理延迟（论文 4.10 定稿口径）。 |
+| `measure_latency.py` | 推理时间测量（论文 4.10 效率分析）：所有对比方法 + FCAN 对目标测试集的推理时间、参数量、FLOPs。输出 `measure_latency_results.csv`。 |
+| `measure_latency_trained.py` | 用真实训练权重测量 FCAN 推理延迟（论文 4.10 定稿口径）。 |
 | `parse_ablation_student.py` | 从消融日志解析 no_ema 方案的 Student 末轮指标（审稿 M2 数据），追加到 `results_ablation_3tasks.txt`。 |
 | `_stats_adda_emdda.py` | ADDA / EM-DDA 对比实验统计（统一第 10 轮 final-epoch 口径，与论文协议一致）。 |
 | `requirements.txt` | 依赖清单（torch、torchvision、numpy、scipy、matplotlib、scikit-learn 等）。 |
@@ -64,7 +64,7 @@
 | 文件 | 用途 |
 |---|---|
 | `best.md` | 三任务最优方案、种子复测、历史最优记录（§9 复现配置的依据）。 |
-| `FCCAN_pipeline.md` | 方法整体流程说明（FEA 频带增强 + CaCo + 低频抑制）。 |
+| `FCAN_pipeline.md` | 方法整体流程说明（FEA 频带增强 + CaCo + 低频抑制）。 |
 | `reference_notes.md` | 参考文献记录（编号式引用总表）。 |
 | `comparison_results_summary.md` | 对比实验结果汇总（论文表 1 数据整理）。 |
 | `sensitivity_analysis_summary.md` | 敏感性分析结果汇总。 |
@@ -109,7 +109,7 @@
 | `physics15/` | 频带物理证明产物（`run_physics_15.py` 生成，已 gitignore）。 |
 | `review_results/` | 审稿相关产物（已 gitignore）。 |
 | `docs/` | 研究笔记、审稿记录、实验分析（历史文档；论文核心结论已汇总到根目录各 `*_summary.md`）。 |
-| `figures/` | 架构图源文件（`fccan_test.drawio`，用 draw.io 打开）。 |
+| `figures/` | 架构图源文件（`fcan_test.drawio`，用 draw.io 打开）。 |
 
 ### 1.5 对比实验（怎么用）
 
