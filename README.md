@@ -44,7 +44,7 @@
 | 文件 | 用途 |
 |---|---|
 | `main.py` | 唯一训练入口。源域训练、目标域迁移、评估都在这里，所有模块（FEA-Net、CaCo、EM、ANG、EMA 教师、低频增广）和超参数（见 §7）都通过它调用。 |
-| `repro_seeds.py` | 固定种子集（中间 10 个稳定种子）。论文、消融、敏感性分析共用同一批种子，保证可复现。 |
+| `repro_seeds.py` | 历史/探索性种子诊断记录（早期扫描的中间 10 个种子）。**不用于论文任何已报告的结果**；论文全部结果使用固定种子 42/123/777/2024/3407，无结果筛选。 |
 | `run_best_metrics.py` | 三任务最优方案 × 5 种子跑批（15 次），输出完整 10 指标、t-SNE、每轮诊断到 `best/`（论文主表数据来源）。用法：`python run_best_metrics.py`。 |
 | `run_comparison.py` | 对比方法批量跑批：对 `comparison_experiments/` 下每个方法 × 任务 × 种子批量运行，结果写入 `comparison_experiments/results/`。用法：`python run_comparison.py`。 |
 | `run_ablation.py` | 统一消融入口。`--phase main` 跑 8 个 w/o 模块删除式消融（论文消融表）；`--phase extra` 跑 no_ema、no_fea_ll、oracle、src_only_fea 四组补充消融。用法：`python run_ablation.py --phase main`。 |
