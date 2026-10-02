@@ -62,7 +62,7 @@ The framework has no adversarial training (no discriminator, no gradient reversa
 
 | File | Purpose |
 |---|---|
-| `best.md` | Best configs per task, seed re-runs, historical bests (basis of the §9 reproduction config). |
+| `best.md` | Best configs per task and the 5-seed results (basis of the §9 reproduction config). |
 | `FCAN_pipeline.md` | Overall method pipeline (FEA band enhancement + CaCo + low-frequency suppression). |
 | `reference_notes.md` | Literature references (numbered citation master list). |
 | `comparison_results_summary.md` | Comparison experiment results (paper Table 1 data). |
