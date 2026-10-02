@@ -43,7 +43,7 @@ The framework has no adversarial training (no discriminator, no gradient reversa
 | File | Purpose |
 |---|---|
 | `main.py` | The single training entry point. Source training, target transfer, and evaluation all go through it, with every module (FEA-Net, CaCo, EM, ANG, EMA teacher, low-frequency augmentation) and every hyperparameter (§7). |
-| `repro_seeds.py` | Fixed seed set (middle 10 stable seeds). The paper, ablations, and sensitivity analyses share the same seeds so results are reproducible. |
+| `repro_seeds.py` | Historical/exploratory seed diagnostic (middle 10 seeds of an early sweep). **Not used for any reported paper result**; all paper results use fixed seeds 42/123/777/2024/3407 without outcome-based filtering. |
 | `run_best_metrics.py` | Runs best config × 5 seeds on three tasks (15 runs), writes full 10 metrics, t-SNE, and per-epoch diagnostics to `best/` (source of the paper's main table). Usage: `python run_best_metrics.py`. |
 | `run_comparison.py` | Batch runner for comparison methods: runs each method in `comparison_experiments/` × tasks × seeds, results to `comparison_experiments/results/`. Usage: `python run_comparison.py`. |
 | `run_ablation.py` | Unified ablation entry. `--phase main` runs the 8 w/o-module leave-one-out ablations (paper ablation table); `--phase extra` runs no_ema, no_fea_ll, oracle, src_only_fea. Usage: `python run_ablation.py --phase main`. |
