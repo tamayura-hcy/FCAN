@@ -6,7 +6,7 @@
 
 > 🌐 Switch language: **[English](README.en.md)** · **[日本語](README.ja.md)** · **[中文](README.md)**
 
-FCCAN does unsupervised domain adaptation for OCT images. A model trained on a labeled source domain (e.g., BOE) is transferred to unlabeled target domains (e.g., TMI, CELL) for stable **AMD / DME / NORMAL** classification.
+FCAN does unsupervised domain adaptation for OCT images. A model trained on a labeled source domain (e.g., BOE) is transferred to unlabeled target domains (e.g., TMI, CELL) for stable **AMD / DME / NORMAL** classification.
 
 The framework has no adversarial training (no discriminator, no gradient reversal). It rests on two lines:
 
@@ -15,7 +15,7 @@ The framework has no adversarial training (no discriminator, no gradient reversa
 
 5-seed mean accuracy (EMA teacher, fixed epoch) on three cross-device scenarios: **BOE→TMI 95.6% · BOE→CELL 87.7% · TMI→CELL 92.1%**.
 
-> Naming: **FCCAN** is the full method (the overall framework); **FEA-Net** (Frequency-Enhanced Attention Network) is its band-enhanced backbone.
+> Naming: **FCAN** is the full method (the overall framework); **FEA-Net** (Frequency-Enhanced Attention Network) is its band-enhanced backbone.
 
 ---
 
@@ -48,12 +48,12 @@ The framework has no adversarial training (no discriminator, no gradient reversa
 | `run_comparison.py` | Batch runner for comparison methods: runs each method in `comparison_experiments/` × tasks × seeds, results to `comparison_experiments/results/`. Usage: `python run_comparison.py`. |
 | `run_ablation.py` | Unified ablation entry. `--phase main` runs the 8 w/o-module leave-one-out ablations (paper ablation table); `--phase extra` runs no_ema, no_fea_ll, oracle, src_only_fea. Usage: `python run_ablation.py --phase main`. |
 | `run_sensitivity.py` | Sensitivity analysis: one hyperparameter at a time (7 params × 5 values × 5 seeds × 3 tasks), reports final-epoch EMA-teacher acc. Usage: `python run_sensitivity.py --tasks AB,AC,BC`. |
-| `run_significance_test.py` | Significance test: FCCAN vs each comparison method, paired per-seed acc over 3 tasks × 5 seeds, outputs p-values and significance marks (reviewer M4). |
+| `run_significance_test.py` | Significance test: FCAN vs each comparison method, paired per-seed acc over 3 tasks × 5 seeds, outputs p-values and significance marks (reviewer M4). |
 | `run_physics_15.py` | Physical proof of the frequency-band modules: 15 models (3 tasks × 5 seeds), Phase 1 train + Phase 2 band perturbation/energy analysis, outputs to `physics15/`. Usage: `python run_physics_15.py --phase both`. |
 | `run_batch_template.py` | Batch experiment template. Copy it, edit `BASE` / `CONFIGS`, and it runs many configs × seeds (logs student/EMA acc). |
 | `experiment_ll_shortcut.py` | Low-frequency shortcut verification: trains baseline and augmented source models, perturbs low/high frequencies on the target test set, and checks whether models classify via low frequency and whether augmentation breaks that shortcut. Outputs `results_ll_shortcut.txt`. |
-| `measure_latency.py` | Inference-time measurement (paper §4.10 efficiency analysis): inference time, parameters, and FLOPs of all comparison methods + FCCAN on the target test set. Outputs `measure_latency_results.csv`. |
-| `measure_latency_trained.py` | Measures FCCAN inference latency with real trained weights (final paper §4.10 protocol). |
+| `measure_latency.py` | Inference-time measurement (paper §4.10 efficiency analysis): inference time, parameters, and FLOPs of all comparison methods + FCAN on the target test set. Outputs `measure_latency_results.csv`. |
+| `measure_latency_trained.py` | Measures FCAN inference latency with real trained weights (final paper §4.10 protocol). |
 | `parse_ablation_student.py` | Parses Student final-epoch metrics for the no_ema plan from ablation logs (reviewer M2 data), appends to `results_ablation_3tasks.txt`. |
 | `_stats_adda_emdda.py` | ADDA / EM-DDA comparison statistics (unified epoch-10 final-epoch protocol, consistent with the paper). |
 | `requirements.txt` | Dependency list (torch, torchvision, numpy, scipy, matplotlib, scikit-learn, etc.). |
@@ -63,7 +63,7 @@ The framework has no adversarial training (no discriminator, no gradient reversa
 | File | Purpose |
 |---|---|
 | `best.md` | Best configs per task, seed re-runs, historical bests (basis of the §9 reproduction config). |
-| `FCCAN_pipeline.md` | Overall method pipeline (FEA band enhancement + CaCo + low-frequency suppression). |
+| `FCAN_pipeline.md` | Overall method pipeline (FEA band enhancement + CaCo + low-frequency suppression). |
 | `reference_notes.md` | Literature references (numbered citation master list). |
 | `comparison_results_summary.md` | Comparison experiment results (paper Table 1 data). |
 | `sensitivity_analysis_summary.md` | Sensitivity analysis results. |
@@ -108,7 +108,7 @@ The framework has no adversarial training (no discriminator, no gradient reversa
 | `physics15/` | Frequency-band physical proof artifacts (generated by `run_physics_15.py`, gitignored). |
 | `review_results/` | Reviewer-related artifacts (gitignored). |
 | `docs/` | Research notes, review records, experiment analyses (historical reference; key paper conclusions are summarized in the root `*_summary.md` files). |
-| `figures/` | Architecture diagram sources (`fccan_test.drawio`, open with draw.io). |
+| `figures/` | Architecture diagram sources (`fcan_test.drawio`, open with draw.io). |
 
 ### 1.5 Comparison Experiments (How to Use)
 
