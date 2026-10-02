@@ -44,7 +44,7 @@
 | ファイル | 用途 |
 |---|---|
 | `main.py` | 唯一の学習エントリポイント。ソース学習、ターゲット転移、評価までをここで行い、全モジュール（FEA-Net、CaCo、EM、ANG、EMA 教師、低周波オーグメンテーション）と全ハイパーパラメータ（§7）を扱います。 |
-| `repro_seeds.py` | 固定シード集合（中間の安定 10 シード）。論文、アブレーション、感度分析で同じシードを使い、結果を再現可能にします。 |
+| `repro_seeds.py` | 歴史的/探索的なシード診断記録（初期スキャンの中間 10 シード）。**論文で報告した結果には一切使用していません**。論文の全結果は固定シード 42/123/777/2024/3407 を使用し、結果による選別は行っていません。 |
 | `run_best_metrics.py` | 3 タスク × 最良設定 × 5 シード（15 回）を実行し、完全 10 指標、t-SNE、各エポック診断を `best/` に出力（論文メインテーブルのデータ源）。使用法：`python run_best_metrics.py`。 |
 | `run_comparison.py` | 比較手法の一括実行：`comparison_experiments/` 内の各手法 × タスク × シードを実行し、結果を `comparison_experiments/results/` に出力。使用法：`python run_comparison.py`。 |
 | `run_ablation.py` | 統合アブレーション入口。`--phase main` は 8 モジュールの削除式アブレーション（論文のアブレーションテーブル）、`--phase extra` は no_ema、no_fea_ll、oracle、src_only_fea の 4 グループ。使用法：`python run_ablation.py --phase main`。 |
