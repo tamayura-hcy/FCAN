@@ -16,7 +16,7 @@
 
 3 つのクロスデバイスシナリオ、5 シード平均（EMA 教師・固定エポック）の正解率：**BOE→TMI 95.6% · BOE→CELL 87.7% · TMI→CELL 92.1%**。
 
-> 命名：**FCCAN** は完全な手法（全体フレームワーク）、**FEA-Net**（Frequency-Enhanced Attention Network）はその内部の周波数帯強調バックボーンです。
+> 命名：**FCAN** は完全な手法（全体フレームワーク）、**FEA-Net**（Frequency-Enhanced Attention Network）はその内部の周波数帯強調バックボーンです。
 
 ---
 
@@ -49,12 +49,12 @@
 | `run_comparison.py` | 比較手法の一括実行：`comparison_experiments/` 内の各手法 × タスク × シードを実行し、結果を `comparison_experiments/results/` に出力。使用法：`python run_comparison.py`。 |
 | `run_ablation.py` | 統合アブレーション入口。`--phase main` は 8 モジュールの削除式アブレーション（論文のアブレーションテーブル）、`--phase extra` は no_ema、no_fea_ll、oracle、src_only_fea の 4 グループ。使用法：`python run_ablation.py --phase main`。 |
 | `run_sensitivity.py` | 感度分析：1 つのハイパーパラメータだけを動かす（7 パラメータ × 5 値 × 5 シード × 3 タスク）、最終エポックの EMA 教師 acc を報告。使用法：`python run_sensitivity.py --tasks AB,AC,BC`。 |
-| `run_significance_test.py` | 有意性検定：FCCAN 対 各比較手法、3 タスク × 5 シードのシード別ペア検定、p 値と有意マークを出力（査読 M4）。 |
+| `run_significance_test.py` | 有意性検定：FCAN 対 各比較手法、3 タスク × 5 シードのシード別ペア検定、p 値と有意マークを出力（査読 M4）。 |
 | `run_physics_15.py` | 周波数帯モジュールの物理的検証：15 モデル（3 タスク × 5 シード）、Phase 1 学習 + Phase 2 周波数帯摂動/エネルギー解析、`physics15/` に出力。使用法：`python run_physics_15.py --phase both`。 |
 | `run_batch_template.py` | 一括実験テンプレート。コピーして `BASE` / `CONFIGS` を編集すれば、複数設定 × シードを一括実行できます（student/EMA acc を記録）。 |
 | `experiment_ll_shortcut.py` | 低周波ショートカット仮説の検証：ソースでベースラインとオーグメントの 2 モデルを学習し、ターゲットテストセットに低/高周波の摂動を加えて、「モデルは低周波で分類し、オーグメントがショートカットを壊す」ことを確かめます。`results_ll_shortcut.txt` を出力。 |
-| `measure_latency.py` | 推論時間の測定（論文 §4.10 効率分析）：全比較手法 + FCCAN のターゲットテストセットでの推論時間、パラメータ数、FLOPs。`measure_latency_results.csv` を出力。 |
-| `measure_latency_trained.py` | 実学習済みの重みで FCCAN の推論レイテンシを測定（論文 §4.10 最終版プロトコル）。 |
+| `measure_latency.py` | 推論時間の測定（論文 §4.10 効率分析）：全比較手法 + FCAN のターゲットテストセットでの推論時間、パラメータ数、FLOPs。`measure_latency_results.csv` を出力。 |
+| `measure_latency_trained.py` | 実学習済みの重みで FCAN の推論レイテンシを測定（論文 §4.10 最終版プロトコル）。 |
 | `parse_ablation_student.py` | アブレーションログから no_ema の Student 最終エポック指標を解析（査読 M2 データ）、`results_ablation_3tasks.txt` に追記。 |
 | `_stats_adda_emdda.py` | ADDA / EM-DDA 比較実験の統計（第 10 エポック final-epoch で統一、論文プロトコルに一致）。 |
 | `requirements.txt` | 依存リスト（torch、torchvision、numpy、scipy、matplotlib、scikit-learn 等）。 |
@@ -64,7 +64,7 @@
 | ファイル | 用途 |
 |---|---|
 | `best.md` | 各タスクの最良設定、シード再測定、過去の最良記録（§9 再現設定の根拠）。 |
-| `FCCAN_pipeline.md` | 手法全体のパイプライン説明（FEA 周波数帯強調 + CaCo + 低周波抑制）。 |
+| `FCAN_pipeline.md` | 手法全体のパイプライン説明（FEA 周波数帯強調 + CaCo + 低周波抑制）。 |
 | `reference_notes.md` | 参考文献記録（番号付き引用マスターリスト）。 |
 | `comparison_results_summary.md` | 比較実験結果のまとめ（論文表 1 のデータ）。 |
 | `sensitivity_analysis_summary.md` | 感度分析結果のまとめ。 |
@@ -109,7 +109,7 @@
 | `physics15/` | 周波数帯の物理的検証の成果物（`run_physics_15.py` が生成、gitignore 済み）。 |
 | `review_results/` | 査読関連の成果物（gitignore 済み）。 |
 | `docs/` | 研究ノート、査読記録、実験分析（履歴参照用；論文の重要結論はルートの `*_summary.md` に集約）。 |
-| `figures/` | アーキテクチャ図のソース（`fccan_test.drawio`、draw.io で開く）。 |
+| `figures/` | アーキテクチャ図のソース（`fcan_test.drawio`、draw.io で開く）。 |
 
 ### 1.5 比較実験（使い方）
 
